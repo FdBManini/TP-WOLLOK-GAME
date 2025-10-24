@@ -1,0 +1,17 @@
+import wollok.game.*
+
+import nave.*
+
+program TpGame {
+	game.title("TpGame")
+	game.height(4)
+	game.width(4)
+
+	// add assets in asset folder, for example, for the background
+  	game.boardGround("Fondo.jpg")
+	game.addVisualCharacter(nave_Principal)
+
+
+	// game.showAttributes(pepita) //Debug
+	game.start()
+}
