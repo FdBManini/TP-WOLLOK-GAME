@@ -4,14 +4,24 @@ import nave.*
 
 program TpGame {
 	game.title("TpGame")
-	game.height(4)
-	game.width(4)
-
+	game.height(50)
+	game.width(50)
+  	game.cellSize(50)
 	// add assets in asset folder, for example, for the background
-  	game.boardGround("Fondo.jpg")
+  	
+	game.boardGround("Fondo.jpg")
 	game.addVisualCharacter(nave_Principal)
 
+  	// game.onTick(10000, "movimiento", {game.addVisual(orbe)})
 
-	// game.showAttributes(pepita) //Debug
+	game.addVisual(orbe)
+
+	keyboard.up().onPressDo({nave_Principal.CambiarPosic("Space1-A-up.png",0,1)})
+	keyboard.down().onPressDo({nave_Principal.CambiarPosic("Space1-A-Down.png",0,-1)})
+	keyboard.left().onPressDo({nave_Principal.CambiarPosic("Space1-A-Left.png",0,-1)})
+	keyboard.right().onPressDo({nave_Principal.CambiarPosic("Space1-A-Right.png",0,1)})
+
+	keyboard.space().onPressDo({})//Disparar
+
 	game.start()
 }
