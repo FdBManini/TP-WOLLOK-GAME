@@ -18,10 +18,10 @@ program TpGame {
 
 	keyboard.up().onPressDo({nave_Principal.CambiarPosic("Space1-A-up.png",0,1)})
 	keyboard.down().onPressDo({nave_Principal.CambiarPosic("Space1-A-Down.png",0,-1)})
-	keyboard.left().onPressDo({nave_Principal.CambiarPosic("Space1-A-Left.png",0,-1)})
-	keyboard.right().onPressDo({nave_Principal.CambiarPosic("Space1-A-Right.png",0,1)})
+	keyboard.left().onPressDo({nave_Principal.CambiarPosic("Space1-A-Left.png",-1,0)})
+	keyboard.right().onPressDo({nave_Principal.CambiarPosic("Space1-A-Right.png",1,0)})
 
-	keyboard.space().onPressDo({})//Disparar
+	keyboard.space().onPressDo({ disparo.Disparar()})//Disparar
 
 	game.start()
 }

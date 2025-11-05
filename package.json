@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "resourceFolder": "assets",
   "wollokVersion": "4.0.0",
-  "author": "Fulanito",
-  "license": "ISC"
+  "author": "Los recargables",
+  "license": "ISC",
+    "scripts": {
+    "start": "wollok run \"mian.TpGame\" --skipValidations --port 4200 -p \"./\""
+  }
 }
