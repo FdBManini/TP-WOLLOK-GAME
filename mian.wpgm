@@ -12,11 +12,6 @@ program TpGame {
 	game.boardGround("Fondo.jpg")
 	game.addVisualCharacter(nave_Principal)
 
-    game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
-
-	game.addVisual(orbe)
-	game.addVisual(enemigo)
-
 	keyboard.up().onPressDo({nave_Principal.CambiarPosic("Space1-A-up.png",0,1)})
 	keyboard.down().onPressDo({nave_Principal.CambiarPosic("Space1-A-Down.png",0,-1)})
 	keyboard.left().onPressDo({nave_Principal.CambiarPosic("Space1-A-Left.png",-1,0)})
@@ -24,14 +19,19 @@ program TpGame {
 
 	keyboard.space().onPressDo({ disparo.Disparar()})//Disparar
 
+	const o1 = new Orbe()
+	const e1 = new Enemigo()
+	
+	inicilizacion.Init_orbe(o1)
+	inicilizacion.Init_enemigo(e1)
+
 
 	game.onCollideDo(nave_Principal, { elemento =>
 		elemento.Destruir()	 
-
 	})
 	
 	game.onCollideDo(disparo, { elemento =>
-		elemento.A_Destruir()
+		elemento.E_Destruir()
 	})
 
 	game.start()

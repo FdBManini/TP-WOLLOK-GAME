@@ -31,6 +31,20 @@ object nave_Principal {
   method Get_x() = x_m
   method Get_y() = y_m
 
+  method E_Destruir(){}
+
+}
+
+object inicilizacion {
+
+  method Init_orbe(orbe) {
+    	game.addVisual(orbe)
+
+  }
+    method Init_enemigo(enemigo) {
+    	game.addVisual(enemigo)
+      game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
+  }
 }
 
 
@@ -87,7 +101,7 @@ object randPosc {
   }
 }
 
-object orbe { //class Orbe
+class Orbe { //class Orbe
   var property position = game.at(randPosc.GetX(10),randPosc.GetX(12))
   var property image = "Orbe.png"
 
@@ -95,10 +109,11 @@ object orbe { //class Orbe
       game.removeVisual(self) 
       nave_Principal.Aumentar_Puntaje()
     }
+    method E_Destruir(){}
 }
 
 
-object enemigo { //class enemigo
+class Enemigo { //class enemigo
   var property position = game.at(randPosc.GetX(2),randPosc.GetX(2))
 
   const property image = "Render_Sacerdote_AoE-wolo.png"
@@ -107,7 +122,7 @@ object enemigo { //class enemigo
       game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
     }
 
-    method A_Destruir(){
+    method E_Destruir(){
       game.removeVisual(self) 
     }
 
