@@ -43,11 +43,10 @@ program TpGame {
 	const e1 = new Enemigo()
 	const e3 = new Enemigo()
 	const e4 = new Enemigo()
-	const e5 = new Enemigo()
-	const e6 = new Enemigo()
+	const e5 = new Enemigo(image="enemy-big-Right.png")
+	const e6 = new Enemigo(image="enemy-big-Right.png")
 	const e7 = new Enemigo()
 	const e8 = new Enemigo()
-
 	
 	inicilizacion.Init_orbe(o1)
 	inicilizacion.Init_orbe(o2)
@@ -76,7 +75,6 @@ program TpGame {
 	inicilizacion.Init_enemigo(e6)
 	inicilizacion.Init_enemigo(e7)
 	inicilizacion.Init_enemigo(e8)
-
 
 	game.onCollideDo(nave_Principal, { elemento =>
 		elemento.Destruir()	 

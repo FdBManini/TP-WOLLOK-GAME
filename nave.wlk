@@ -49,7 +49,9 @@ object inicilizacion {
   }
     method Init_enemigo(enemigo) {
     	game.addVisual(enemigo)
-      game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
+      game.onTick(100, "movimiento-enemigo",
+      {enemigo.UpdatePosc()
+      enemigo.reaparecer()})
     	
       game.onCollideDo(enemigo, { elemento =>
         elemento.Perder()
@@ -135,9 +137,9 @@ class Enemigo { //class enemigo
 
   const property image = "Render_Sacerdote_AoE-wolo.png"
 
-    method Timer() {
-      game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
-    }
+    method timer() {
+      game.onTick(10000, "movimiento-enemigo", {self.UpdatePosc()
+      self.reaparecer()})}
 
     method E_Destruir(){
       game.removeVisual(self) 
