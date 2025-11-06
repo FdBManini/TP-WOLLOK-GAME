@@ -78,19 +78,19 @@ object disparo { //class Disparo
 
 }
 
+object randPosc {
+  method GetX(min) {
+    return (min.randomUpTo(game.width()).truncate(0))
+  }
+  method GetY(min) {
+    return (min.randomUpTo(game.height()).truncate(0))
+  }
+}
 
 object orbe { //class Orbe
-  // var property position = game.at(1,2)
+  var property position = game.at(randPosc.GetX(10),randPosc.GetX(12))
   var property image = "Orbe.png"
 
-    method position() {
-      // const x = 0.randomUpTo(game.width()).truncate(0)
-      // const y = 0.randomUpTo(game.height()).truncate(0)
-
-      const x = 10
-      const y = 12
-      return game.at(x,y)
-    }
     method Destruir() {
       game.removeVisual(self) 
       nave_Principal.Aumentar_Puntaje()
@@ -99,17 +99,10 @@ object orbe { //class Orbe
 
 
 object enemigo { //class enemigo
-  var property position = game.at(18,12)
+  var property position = game.at(randPosc.GetX(2),randPosc.GetX(2))
+
   const property image = "Render_Sacerdote_AoE-wolo.png"
 
-    // method position() {
-    //   // const x = 0.randomUpTo(game.width()).truncate(0)
-    //   // const y = 0.randomUpTo(game.height()).truncate(0)
-
-    //   const x = 10
-    //   const y = 12
-    //   return game.at(x,y)
-    // }
     method Timer() {
       game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
     }
