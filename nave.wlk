@@ -48,7 +48,9 @@ object inicilizacion {
   }
     method Init_enemigo(enemigo) {
     	game.addVisual(enemigo)
-      game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
+      game.onTick(100, "movimiento-enemigo",
+      {enemigo.UpdatePosc()
+      enemigo.reaparecer()})
     	
       game.onCollideDo(enemigo, { elemento =>
         elemento.Perder()
@@ -128,11 +130,19 @@ class Orbe { //class Orbe
 class Enemigo { //class enemigo
   var property position = game.at(randPosc.GetX(2),randPosc.GetY(2))
 
+  method reaparecer()
+  {
+    if(position.x()==game.width())
+    {
+      position=game.at(0,0.randomUpTo(game.height()).truncate(0))
+    }
+  }
+
   const property image = "Render_Sacerdote_AoE-wolo.png"
 
-    method Timer() {
-      game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
-    }
+    method timer() {
+      game.onTick(10000, "movimiento-enemigo", {self.UpdatePosc()
+      self.reaparecer()})}
 
     method E_Destruir(){
       game.removeVisual(self) 
@@ -140,8 +150,7 @@ class Enemigo { //class enemigo
 
     method UpdatePosc() {
       const unid_mov = 1
-
-      // position = position.right(unid_mov)
+      position = position.right(unid_mov)
     }
     method Destruir(){}
 
