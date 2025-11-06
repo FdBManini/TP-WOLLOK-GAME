@@ -34,10 +34,11 @@ object nave_Principal {
   method E_Destruir(){}
 
   method Perder(){
-        game.say(self, "Mori")
+        game.say(self, "Me dieron")
+        // game.stop()
+        puntaje -= 1 
+
   }  
-
-
 }
 
 object inicilizacion {
@@ -52,6 +53,7 @@ object inicilizacion {
     	
       game.onCollideDo(enemigo, { elemento =>
         elemento.Perder()
+        nave_Principal.Aumentar_Puntaje()
       })
 
   }
@@ -122,11 +124,14 @@ class Orbe { //class Orbe
     }
     method E_Destruir(){}
     method Terminar(){}
+    method Perder(){}
+
 }
 
 
 class Enemigo { //class enemigo
   var property position = game.at(randPosc.GetX(2),randPosc.GetY(2))
+  const direccion = 0 // -1 no se mueven  0 horizontal 1 vertical 2 los dos
 
   const property image = "Render_Sacerdote_AoE-wolo.png"
 
@@ -141,9 +146,25 @@ class Enemigo { //class enemigo
     method UpdatePosc() {
       const unid_mov = 1
 
-      // position = position.right(unid_mov)
+    if(self.Dir_ninguna()){
+        if (self.Dir_Horizontal() || self.Dir_Vertical_Horizontal()){
+          if(position.x() > game.width()) position = game.at(-2,randPosc.GetY(4)) 
+          else  position = position.right(unid_mov) 
+        }
+        if (self.Dir_Vertical() || self.Dir_Vertical_Horizontal()){
+          if(position.y() < 0 ) position = game.at(randPosc.GetX(4),game.height())
+          else  position = position.down(unid_mov) 
+        }
+      }
     }
+
+    method Dir_ninguna() = direccion != -1  
+    method Dir_Horizontal() = direccion == 0
+    method Dir_Vertical() = direccion == 1
+    method Dir_Vertical_Horizontal() = direccion == 2
+
+
+
     method Destruir(){}
-
+    method Perder(){}
 }
-
