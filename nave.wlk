@@ -33,6 +33,11 @@ object nave_Principal {
 
   method E_Destruir(){}
 
+  method Perder(){
+        game.say(self, "Mori")
+  }  
+
+
 }
 
 object inicilizacion {
@@ -44,6 +49,11 @@ object inicilizacion {
     method Init_enemigo(enemigo) {
     	game.addVisual(enemigo)
       game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
+    	
+      game.onCollideDo(enemigo, { elemento =>
+        elemento.Perder()
+      })
+
   }
 }
 
@@ -69,8 +79,6 @@ object disparo { //class Disparo
       game.onTick(50, "movimiento-Disparo", {self.UpdatePosc()})
     }
 
-    method Destruir(){}
-
     method UpdatePosc() {
      const unid_mov = 1
 
@@ -89,6 +97,9 @@ object disparo { //class Disparo
         position = position.right(unid_mov)
       }
     }
+
+    method Destruir(){}
+    method Perder(){}
 
 }
 
@@ -110,11 +121,12 @@ class Orbe { //class Orbe
       nave_Principal.Aumentar_Puntaje()
     }
     method E_Destruir(){}
+    method Terminar(){}
 }
 
 
 class Enemigo { //class enemigo
-  var property position = game.at(randPosc.GetX(2),randPosc.GetX(2))
+  var property position = game.at(randPosc.GetX(2),randPosc.GetY(2))
 
   const property image = "Render_Sacerdote_AoE-wolo.png"
 
@@ -129,8 +141,9 @@ class Enemigo { //class enemigo
     method UpdatePosc() {
       const unid_mov = 1
 
-      position = position.right(unid_mov)
+      // position = position.right(unid_mov)
     }
-    
+    method Destruir(){}
+
 }
 
