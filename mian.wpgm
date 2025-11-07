@@ -43,8 +43,8 @@ program TpGame {
 	const e1 = new Enemigo()
 	const e3 = new Enemigo()
 	const e4 = new Enemigo()
-	const e5 = new Enemigo(image="enemy-big-Right.png")
-	const e6 = new Enemigo(image="enemy-big-Right.png")
+	const e5 = new Enemigo()
+	const e6 = new Enemigo()
 	const e7 = new Enemigo()
 	const e8 = new Enemigo()
 	
