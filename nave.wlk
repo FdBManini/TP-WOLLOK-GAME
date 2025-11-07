@@ -23,6 +23,14 @@ object nave_Principal {
 
   method Destruir(){}
 
+  method destruccion(){
+    game.schedule(300,{image="explosion1.png"})
+    game.schedule(600,{image="explosion2.png"})
+    game.schedule(900,{image="explosion3.png"})
+    game.schedule(1200,{image="explosion4.png"})
+    game.schedule(1500,{image="explosion5.png"})
+  }
+
 // saber para donde mira
   method M_Arriba()     = y_m == 1
   method M_Abajo()      = y_m == -1
@@ -35,17 +43,33 @@ object nave_Principal {
   method E_Destruir(){}
 
   method Perder(){
+        if(puntaje>=0)
+        {
         puntaje -= 1 
         game.say(self, "Me dieron!")
-        //Quizas quedaria mejor separarlo en 2 metodos
-        if (puntaje == 0){
-          game.clear()
-          game.addVisual (self)
-          game.say (self, "Se acabó")
         }
-        
-
+        else 
+        {
+          game.clear()
+          game.addVisual(self)
+          self.destruccion()
+          game.schedule(1600,{self.destruccion()})
+          game.schedule(3300,{image="explosion4.png"})
+          game.schedule(3600,{image="explosion3.png"})
+          game.schedule(4600,{game.removeVisual(self)})
+          game.schedule(5000,{game.addVisualCharacter(texto)})
+          game.schedule(6500,{game.removeVisual(texto)})
+          game.schedule(8000,{game.addVisualCharacter(texto)})
+          game.schedule(9500,{game.removeVisual(texto)})
+          game.schedule(11000,{game.addVisualCharacter(texto)})
+        }
   }  
+}
+
+object texto
+{
+  var property position=game.at(15,15)
+  var property image="gameover.png"
 }
 
 object inicilizacion {
@@ -56,11 +80,9 @@ object inicilizacion {
   }
     method Init_enemigo(enemigo) {
     	game.addVisual(enemigo)
-      game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
-    	
+      //game.onTick(50, "movimiento-enemigo", {enemigo.UpdatePosc()})
       game.onCollideDo(enemigo, { elemento =>
         elemento.Perder()
-        nave_Principal.Aumentar_Puntaje()
       })
 
   }
@@ -140,11 +162,11 @@ class Enemigo { //class enemigo
   var property position = game.at(randPosc.GetX(2),randPosc.GetY(2))
   const direccion = 0 // -1 no se mueven  0 horizontal 1 vertical 2 los dos
 
-  const property image = "Space1-A.png"
+  var property image = "Space1-A-Right.png"
 
-    method Timer() {
-      game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
-    }
+//    method Timer() {
+//      game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
+//    }
 
     method E_Destruir(){
       game.removeVisual(self) 

@@ -30,13 +30,6 @@ program TpGame {
 	const o10 = new Orbe()
 	const o11 = new Orbe()
 	const o12 = new Orbe()
-	const o13 = new Orbe()
-	const o14 = new Orbe()
-	const o15 = new Orbe()
-	const o16 = new Orbe()
-	const o17 = new Orbe()
-	const o18 = new Orbe()
-
 
 	const e2 = new Enemigo()
 	const e1 = new Enemigo()
@@ -59,12 +52,6 @@ program TpGame {
 	inicilizacion.Init_orbe(o10)
 	inicilizacion.Init_orbe(o11)
 	inicilizacion.Init_orbe(o12)
-	inicilizacion.Init_orbe(o13)
-	inicilizacion.Init_orbe(o14)
-	inicilizacion.Init_orbe(o15)
-	inicilizacion.Init_orbe(o16)
-	inicilizacion.Init_orbe(o17)
-	inicilizacion.Init_orbe(o18)
 
 	inicilizacion.Init_enemigo(e2)
 	inicilizacion.Init_enemigo(e1)
@@ -74,6 +61,16 @@ program TpGame {
 	inicilizacion.Init_enemigo(e6)
 	inicilizacion.Init_enemigo(e7)
 	inicilizacion.Init_enemigo(e8)
+
+	game.onTick(100, "e1", {e1.UpdatePosc()})
+	game.onTick(100, "e2", {e2.UpdatePosc()})
+	game.onTick(100, "e3", {e3.UpdatePosc()})
+	game.onTick(100, "e4", {e4.UpdatePosc()})
+	game.onTick(100, "e5", {e5.UpdatePosc()})
+	game.onTick(100, "e6", {e6.UpdatePosc()})
+	game.onTick(100, "e7", {e7.UpdatePosc()})
+	game.onTick(100, "e8", {e8.UpdatePosc()})
+
 
 	game.onCollideDo(nave_Principal, { elemento =>
 		elemento.Destruir()	 
