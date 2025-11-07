@@ -4,18 +4,17 @@ import nave.*
 
 program TpGame {
 	game.title("TpGame")
-	game.height(50)
-	game.width(50)
-  	game.cellSize(50)
+	game.height(40)
+	game.width(40)
+  	game.cellSize(40)
 	// add assets in asset folder, for example, for the background
   	
-	game.boardGround("Fondo.jpg")
+	game.boardGround("Fondo.jpg") 
 	game.addVisualCharacter(nave_Principal)
-
 	keyboard.up().onPressDo({nave_Principal.CambiarPosic("Space1-A-up.png",0,1)})
 	keyboard.down().onPressDo({nave_Principal.CambiarPosic("Space1-A-Down.png",0,-1)})
 	keyboard.left().onPressDo({nave_Principal.CambiarPosic("Space1-A-Left.png",-1,0)})
-	keyboard.right().onPressDo({nave_Principal.CambiarPosic("Space1-A-Right.png",1,0)})
+	keyboard.right().onPressDo({nave_Principal.CambiarPosic("Space1-A-Right.png", 1 ,0)})
 
 	keyboard.space().onPressDo({ disparo.Disparar()})//Disparar
 

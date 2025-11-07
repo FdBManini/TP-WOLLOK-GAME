@@ -1,4 +1,5 @@
 object nave_Principal {
+  var property lenght = 1 
   var balas = 100
   var x_m = 0
   var y_m = 1
@@ -34,9 +35,15 @@ object nave_Principal {
   method E_Destruir(){}
 
   method Perder(){
-        game.say(self, "Me dieron")
-        // game.stop()
         puntaje -= 1 
+        game.say(self, "Me dieron!")
+        //Quizas quedaria mejor separarlo en 2 metodos
+        if (puntaje == 0){
+          game.clear()
+          game.addVisual (self)
+          game.say (self, "Se acabó")
+        }
+        
 
   }  
 }
@@ -133,7 +140,7 @@ class Enemigo { //class enemigo
   var property position = game.at(randPosc.GetX(2),randPosc.GetY(2))
   const direccion = 0 // -1 no se mueven  0 horizontal 1 vertical 2 los dos
 
-  const property image = "Render_Sacerdote_AoE-wolo.png"
+  const property image = "Space1-A.png"
 
     method Timer() {
       game.onTick(50, "movimiento-enemigo", {self.UpdatePosc()})
